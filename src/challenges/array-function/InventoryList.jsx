@@ -4,9 +4,9 @@ const InventoryList = ({ items }) => {
   return (
     <section>
       <ul>
-        {weaponItems.map((item, index) => {
+        {weaponItems.map((item) => {
           return (
-            <li key={index}>{item.type}</li>
+            <li key={item.id}>{item.name}</li>
           );
         })}
       </ul>
