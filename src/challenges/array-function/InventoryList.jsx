@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 const InventoryList = ({ items }) => {
   const weaponItems = items.filter((item) => item.type === 'Weapon');
   return (
