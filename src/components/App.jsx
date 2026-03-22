@@ -1,3 +1,4 @@
+// ? App.jsx
 import React from 'react';
 import { getInitialData } from '../utils';
 import NoteInput from './NoteInput';
