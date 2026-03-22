@@ -1,0 +1,1 @@
+Jangan lupa untuk menghapus folder node_modules sebelum mengirimkan submission
