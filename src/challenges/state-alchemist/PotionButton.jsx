@@ -6,9 +6,20 @@ export default class PotionButton extends React.Component {
     this.state = {
       hp: 100
     };
+    this.onTakeDamage = this.onTakeDamage.bind(this);
   };
 
   onTakeDamage() {
-    this.setState
-  }
-}
+    this.setState((prevState) => {
+      return { hp: prevState.hp - 10 };
+    });
+  };
+  render(){
+    return (
+      <section>
+        <p>Currently HP: {this.state.hp}</p>
+        <button onClick={this.onTakeDamage}>-10</button>
+      </section>
+    );
+  };
+};
