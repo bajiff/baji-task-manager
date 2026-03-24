@@ -7,10 +7,10 @@ import { createRoot } from 'react-dom/client';
 // import inventoryItems from './challenges/array-function/inventoryItems';
 // import PotionButton from './challenges/state-alchemist/PotionButton';
 // import ManaPump from './challenges/state-alchemist/ManaPump';
-import GuildForm from './challenges/guild-form/GuildForm';
-
+// import GuildForm from './challenges/guild-form/GuildForm';
+import App from './challenges/final-boss/App';
 // import style
 import './styles/style.css';
 
 const root = createRoot(document.getElementById('root'));
-root.render(<GuildForm/>);
+root.render(<App/>);
