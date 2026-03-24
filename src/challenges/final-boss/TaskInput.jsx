@@ -11,7 +11,7 @@ export default class TaskInput extends React.Component {
     this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this);
     this.onAddTitleEventHandler = this.onAddTitleEventHandler.bind(this);
     this.onAddBodyEventHandler = this.onAddBodyEventHandler.bind(this);
-  };
+  }
   onSubmitEventHandler(e) {
     e.preventDefault();
     this.props.addTask(this.state);
@@ -19,21 +19,21 @@ export default class TaskInput extends React.Component {
       title: '',
       body: ''
     });
-  };
+  }
   onAddTitleEventHandler(e) {
     if (e.target.value.length <= 50) {
       this.setState({
         title: e.target.value
       });
     };
-  };
+  }
   onAddBodyEventHandler(e) {
     if (e.target.value.length <= 100) {
       this.setState({
         body: e.target.value
       });
     };
-  };
+  }
   render() {
     return (
       <form action="" onSubmit={this.onSubmitEventHandler}>
