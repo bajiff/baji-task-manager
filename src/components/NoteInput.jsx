@@ -20,11 +20,19 @@ class NoteInput extends React.Component {
   onTitleChangeEventHandler(event) {
     // TODO [Basic] update state dengan nilai event.target.value.
     // TODO [Skilled] batasi judul maksimal 50 karakter dan tampilkan peringatan saat sisa karakter < 10.
+    if (event.target.value < 50) {
+      this.setState({
+        title: event.target.value
+      });
+    };
     console.warn('[TODO] Handle title change', event.target.value);
   }
 
   onBodyChangeEventHandler(event) {
     // TODO [Basic] update state body agar textarea menjadi controlled component.
+    this.setState({
+      body: event.target.value
+    });
     console.warn('[TODO] Handle body change', event.target.value);
   }
 
@@ -33,6 +41,11 @@ class NoteInput extends React.Component {
 
     // TODO [Basic] panggil props.addNote dengan data title & body dari state, lalu reset form.
     // TODO [Advanced] tolak submit ketika body kurang dari 10 karakter dan tampilkan pesan error.
+    this.props.addNote(this.state);
+    this.setState({
+      title: '',
+      body: ''
+    });
     console.warn('[TODO] Submit note', this.state);
   }
 
@@ -64,6 +77,7 @@ class NoteInput extends React.Component {
             value={this.state.title}
             onChange={this.onTitleChangeEventHandler}
             required
+            autoFocus
             data-testid="note-input-title-field"
           />
           <textarea

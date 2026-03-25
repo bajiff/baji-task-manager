@@ -10,9 +10,10 @@ class App extends React.Component {
 
     this.state = {
       // TODO [Basic] simpan data catatan dari util getInitialData supaya daftar awal langsung tampil.
-      notes: getInitialData,
+      notes: getInitialData(),
 
       // TODO [Skilled] sediakan state untuk kata kunci pencarian.
+      searchKeyword: ''
     };
 
     this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
@@ -23,34 +24,68 @@ class App extends React.Component {
 
   onAddNoteHandler({ title, body }) {
     // TODO [Basic] tambahkan catatan baru ke state.notes gunakan spread operator dan +new Date() sebagai id.
+    this.setState((prevState) => {
+      return {
+        notes: [
+          ...prevState.notes,
+          {
+            id: +new Date(),
+            title: title,
+            body: body,
+            archived: false
+          }
+        ]
+      };
+    });
     // TODO [Advanced] setelah menambahkan, pastikan catatan baru muncul pada daftar aktif.
     console.warn('[TODO] Implement onAddNoteHandler', { title, body });
   }
 
   onDeleteHandler(id) {
     // TODO [Basic] gunakan array.filter untuk menghapus catatan berdasarkan id.
-    
+    this.setState((prevState) => {
+      const remainingTask = prevState.notes.filter((note) => note.id !== id);
+      return { notes: remainingTask };
+    });
     console.warn('[TODO] Implement onDeleteHandler', { id });
   }
 
   onArchiveHandler(id) {
     // TODO [Advanced] gunakan array.map untuk toggle nilai archived catatan sesuai id dan pisahkan daftar aktif/arsip.
+    this.setState((prevState) => {
+      const updatedStatus = prevState.notes.map((note) => {
+        if (note.id === id) {
+          return { ...note, archived: !note.archived };
+        };
+        return note;
+      });
+      return { notes: updatedStatus };
+    });
+
     console.warn('[TODO] Implement onArchiveHandler', { id });
   }
 
   onSearchHandler(keyword) {
     // TODO [Skilled] simpan keyword ke state dan manfaatkan untuk memfilter catatan.
+    this.setState({
+      searchKeyword: keyword.taget.value
+    });
+
     console.warn('[TODO] Implement onSearchHandler', { keyword });
   }
 
   render() {
     const { notes, searchKeyword } = this.state;
-
     // TODO [Skilled] filter catatan berdasarkan searchKeyword (case-insensitive).
-    const filteredNotes = notes;
+    const filteredNotes = notes.filter((note) => {
+      return note.title.toLowerCase().includes(searchKeyword.toLowerCase());
+    });
+
     // TODO [Advanced] pisahkan catatan aktif dan arsip menggunakan array.filter, lalu urutkan berdasarkan tanggal terbaru.
-    const activeNotes = filteredNotes;
-    const archivedNotes = filteredNotes;
+
+    const activeNotes = filteredNotes.filter((note) => note.archived === false).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) ;
+
+    const archivedNotes = filteredNotes.filter((note) => note.archived === true).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     return (
       <div className="note-app" data-testid="note-app">

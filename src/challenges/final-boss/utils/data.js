@@ -1,4 +1,4 @@
-const data = [
+const data = () => ([
   {
     id:1,
     title:'Kalahkan Slime',
@@ -23,5 +23,5 @@ const data = [
     body: 'Upgrade skill coding dan kirimkan file ransomeware',
     isCompleted: false
   },
-];
+]);
 export default data;
