@@ -10,7 +10,7 @@ class App extends React.Component {
 
     this.state = {
       // TODO [Basic] simpan data catatan dari util getInitialData supaya daftar awal langsung tampil.
-      notes: null,
+      notes: getInitialData,
 
       // TODO [Skilled] sediakan state untuk kata kunci pencarian.
     };
@@ -29,6 +29,7 @@ class App extends React.Component {
 
   onDeleteHandler(id) {
     // TODO [Basic] gunakan array.filter untuk menghapus catatan berdasarkan id.
+    
     console.warn('[TODO] Implement onDeleteHandler', { id });
   }
 
