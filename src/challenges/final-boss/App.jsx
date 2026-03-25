@@ -38,6 +38,7 @@ export default class App extends React.Component {
     this.onAddTaskHandler = this.onAddTaskHandler.bind(this);
     this.onDeleteTaskHandler = this.onDeleteTaskHandler.bind(this);
     this.onToggleTaskHandler = this.onToggleTaskHandler.bind(this);
+    this.onSearchKeywordHandler = this.onSearchKeywordHandler.bind(this);
   };
   onAddTaskHandler({ title, body }) {
     this.setState((prevState) => {
@@ -75,13 +76,33 @@ export default class App extends React.Component {
       return { tasks: updatedState };
     });
   }
+  onSearchKeywordHandler(e) {
+    this.setState({
+      searchKeyword: e.target.value
+    });
+  }
 
   render() {
+    const filteredTask = this.state.tasks.filter((task) => {
+      return task.title.toLowerCase().includes(this.state.searchKeyword.toLowerCase());
+    });
+    const activeTask = filteredTask.filter((task) => task.isCompleted === false);
+    const completedTask = filteredTask.filter((task) => task.isCompleted === true);
     return (
       <section>
         <h1>Aplikasi Manajemen Misi</h1>
         <p>Total Misi: {this.state.tasks.length}</p>
-        <TaskList taskList={this.state.tasks} onDelete={this.onDeleteTaskHandler} onToggle={this.onToggleTaskHandler} />
+        <input type="text" name="searchKeyword" id="searchKeyword" value={this.state.searchKeyword} onChange={this.onSearchKeywordHandler} />
+        <h2>Daftar Misi</h2>
+        <br />
+        <br />
+        <h3>Misi Belum Terselesaikan YOWW</h3>
+        <TaskList taskList={activeTask} onDelete={this.onDeleteTaskHandler} onToggle={this.onToggleTaskHandler} />
+
+        <br />
+        <br />
+        <h3>Misi Terselesaikan YOWW</h3>
+        <TaskList taskList={completedTask} onDelete={this.onDeleteTaskHandler} onToggle={this.onToggleTaskHandler} />
         <br />
         <TaskInput addTask={this.onAddTaskHandler} />
       </section>

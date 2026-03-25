@@ -3,7 +3,6 @@ import TaskItem from './TaskItem';
 const TaskList = ({ taskList, onDelete, onToggle }) => {
   return (
     <section>
-      <h2>Misi</h2>
       {taskList?.length > 0 ? (
         <ul>
           {taskList.map((task) => {
