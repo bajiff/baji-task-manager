@@ -36,6 +36,8 @@ export default class App extends React.Component {
       searchKeyword: ''
     };
     this.onAddTaskHandler = this.onAddTaskHandler.bind(this);
+    this.onDeleteTaskHandler = this.onDeleteTaskHandler.bind(this);
+    this.onToggleTaskHandler = this.onToggleTaskHandler.bind(this);
   };
   onAddTaskHandler({ title, body }) {
     this.setState((prevState) => {
@@ -53,12 +55,33 @@ export default class App extends React.Component {
     });
   }
 
+  onDeleteTaskHandler(id) {
+    this.setState((prevState) => {
+      const remainingTask = prevState.tasks.filter((task) => task.id !== id);
+      return {
+        tasks: remainingTask
+      };
+    });
+  }
+
+  onToggleTaskHandler(id) {
+    this.setState((prevState) => {
+      const updatedState = prevState.tasks.map((task) => {
+        if (task.id === id) {
+          return { ...task, isCompleted: !task.isCompleted };
+        };
+        return task;
+      });
+      return { tasks: updatedState };
+    });
+  }
+
   render() {
     return (
       <section>
         <h1>Aplikasi Manajemen Misi</h1>
         <p>Total Misi: {this.state.tasks.length}</p>
-        <TaskList taskList={this.state.tasks} />
+        <TaskList taskList={this.state.tasks} onDelete={this.onDeleteTaskHandler} onToggle={this.onToggleTaskHandler} />
         <br />
         <TaskInput addTask={this.onAddTaskHandler} />
       </section>

@@ -1,6 +1,6 @@
 import React from 'react';
 import TaskItem from './TaskItem';
-const TaskList = ({ taskList }) => {
+const TaskList = ({ taskList, onDelete, onToggle }) => {
   return (
     <section>
       <h2>Misi</h2>
@@ -8,7 +8,7 @@ const TaskList = ({ taskList }) => {
         <ul>
           {taskList.map((task) => {
             return (
-              <TaskItem key={task.id} task={task} />
+              <TaskItem key={task.id} task={task} onDelete={onDelete} onToggle={onToggle} />
             );
           })}
         </ul>
