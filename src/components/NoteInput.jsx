@@ -20,7 +20,7 @@ class NoteInput extends React.Component {
   onTitleChangeEventHandler(event) {
     // TODO [Basic] update state dengan nilai event.target.value.
     // TODO [Skilled] batasi judul maksimal 50 karakter dan tampilkan peringatan saat sisa karakter < 10.
-    if (event.target.value < 50) {
+    if (event.target.value.length <= 50) {
       this.setState({
         title: event.target.value
       });
@@ -64,12 +64,10 @@ class NoteInput extends React.Component {
           data-testid="note-input-form"
         >
           {/* TODO [Skilled] tampilkan sisa karakter secara dinamis ketika limit judul diterapkan */}
-          <p
-            className="note-input__title__char-limit"
-            data-testid="note-input-title-remaining"
-          >
-            Sisa karakter: {remainingChars}
-          </p>
+          {
+            (this.state.title.length <= 50) ?
+              (<p className={`note-input__title__char-limit ${this.state.title.length >= 40 ? 'note-input__title__char-limit--warn' : ''}`} data-testid="note-input-title-remaining" >Sisa karakter:  {(remainingChars - 50) - this.state.title.length}</p>) : ''
+          }
           <input
             className="note-input__title"
             type="text"
