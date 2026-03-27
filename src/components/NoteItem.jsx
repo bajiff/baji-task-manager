@@ -18,6 +18,7 @@ function NoteItem({ note, onDelete, onArchive }) {
         {/* TODO [Basic] gunakan util showFormattedDate untuk menampilkan tanggal dibuat. */}
         <p className="note-item__date" data-testid="note-item-date">
           {new Date().toISOString()}
+          {showFormattedDate}
         </p>
         {/* TODO [Basic] tampilkan isi catatan dari note.body */}
         {/* TODO [Advanced] sorot kata kunci pencarian dalam isi menggunakan elemen <mark>. */}
@@ -31,13 +32,14 @@ function NoteItem({ note, onDelete, onArchive }) {
           className="note-item__delete-button"
           type="button"
           // TODO [Basic] panggil onDelete dengan id catatan.
-          onClick={() => console.warn('[TODO] Delete note', note.id)}
+          onClick={() => onDelete}
           data-testid="note-item-delete-button"
         >
           Delete
         </button>
 
         {/* TODO [Advanced] implementasikan tombol arsip untuk fitur mengarsipkan catatan */}
+        <button onClick={() => onArchive}>Arsipkan</button>
       </div>
     </div>
   );
