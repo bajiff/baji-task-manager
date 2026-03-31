@@ -25,6 +25,7 @@ class App extends React.Component {
   onAddNoteHandler({ title, body }) {
     // TODO [Basic] tambahkan catatan baru ke state.notes gunakan spread operator dan +new Date() sebagai id.
     this.setState((prevState) => {
+      // ? Data ini ngambil dari utils lalu di spread dulu lalu di timpa datanya
       return {
         notes: [
           ...prevState.notes,
@@ -32,13 +33,15 @@ class App extends React.Component {
             id: +new Date(),
             title: title,
             body: body,
+            createdAt: new Date().toString(),
             archived: false
           }
         ]
       };
     });
     // TODO [Advanced] setelah menambahkan, pastikan catatan baru muncul pada daftar aktif.
-    console.warn('[TODO] Implement onAddNoteHandler', { title, body });
+    // console ini saya non aktifkan soalnya clutter wkwk jadi saya matiin aja
+    // console.warn('[TODO] Implement onAddNoteHandler', { title, body });
   }
 
   onDeleteHandler(id) {
@@ -47,7 +50,8 @@ class App extends React.Component {
       const remainingTask = prevState.notes.filter((note) => note.id !== id);
       return { notes: remainingTask };
     });
-    console.warn('[TODO] Implement onDeleteHandler', { id });
+    // console ini saya non aktifkan soalnya clutter wkwk jadi saya matiin aja
+    // console.warn('[TODO] Implement onDeleteHandler', { id });
   }
 
   onArchiveHandler(id) {
@@ -62,16 +66,18 @@ class App extends React.Component {
       return { notes: updatedStatus };
     });
 
-    console.warn('[TODO] Implement onArchiveHandler', { id });
+    // console ini saya non aktifkan soalnya clutter wkwk jadi saya matiin aja
+    // console.warn('[TODO] Implement onArchiveHandler', { id });
   }
 
   onSearchHandler(keyword) {
     // TODO [Skilled] simpan keyword ke state dan manfaatkan untuk memfilter catatan.
     this.setState({
-      searchKeyword: keyword.taget.value
+      searchKeyword: keyword.target.value
     });
 
-    console.warn('[TODO] Implement onSearchHandler', { keyword });
+    // console ini saya non aktifkan soalnya clutter wkwk jadi saya matiin aja
+    // console.warn('[TODO] Implement onSearchHandler', { keyword });
   }
 
   render() {
