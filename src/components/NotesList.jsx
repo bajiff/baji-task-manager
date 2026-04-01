@@ -4,7 +4,7 @@ import NoteItem from './NoteItem';
 
 function NotesList({ notes, onDelete, onArchive, dataTestId = 'notes-list' }) {
   // TODO [Basic] validasi notes agar tidak kosong.
-  const hasNotes = false; // update dengan nilai yang sesuai
+  const hasNotes = notes && notes.length > 0; // update dengan nilai yang sesuai
 
   if (!hasNotes) {
     return (
@@ -13,7 +13,7 @@ function NotesList({ notes, onDelete, onArchive, dataTestId = 'notes-list' }) {
         <p
           className="notes-list__empty-message"
           data-testid={`${dataTestId}-empty`}
-        ></p>
+        >Yey Catatan Tidak ada</p>
       </div>
     );
   }
@@ -21,6 +21,9 @@ function NotesList({ notes, onDelete, onArchive, dataTestId = 'notes-list' }) {
   return (
     <div className="notes-list" data-testid={dataTestId}>
       {/* TODO [Basic] gunakan array.map untuk merender NoteItem untuk setiap catatan. */}
+      {notes.map((note) => (
+        <NoteItem key={note.id} note={note} onArchive={onArchive} onDelete={onDelete} />
+      ))}
       {/* TODO [Skilled] ekstrak tombol aksi menjadi komponen reusable agar dipakai NoteItem. */}
       {/* TODO [Advanced] kelompokkan catatan per bulan-tahun dan render tiap grup dalam <section className="notes-group">. */}
     </div>
