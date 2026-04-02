@@ -104,19 +104,13 @@ class App extends React.Component {
             aria-labelledby="active-notes-title"
             data-testid="active-notes-section"
           >
-            <h2 id="active-notes-title">Catatan Aktif</h2>
-            <NotesList
-              notes={activeNotes}
-              onDelete={this.onDeleteHandler}
-              onArchive={this.onArchiveHandler}
-              dataTestId="active-notes-list"
-            />
+            <h2 id="active-notes-title">Catatan Aktif ({activeNotes.length})</h2>
           </section>
           <section
             aria-labelledby="archived-notes-title"
             data-testid="archived-notes-section"
           >
-            <h2 id="archived-notes-title">Arsip</h2>
+            <h2 id="archived-notes-title">Arsip ({archivedNotes.length})</h2>
             <NotesList
               notes={archivedNotes}
               onDelete={this.onDeleteHandler}

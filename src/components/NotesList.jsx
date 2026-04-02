@@ -45,20 +45,19 @@ function NotesList({ notes, onDelete, onArchive, dataTestId = 'notes-list' }) {
       {/* Oke Disini kita beresin ya ges yah */}
       {Object.entries(groupedNotes).map(([groupKeyNote, groupValueNotes]) => (
 
-        // ? Aturan Suci: Format elemen sesuai persyaratan Advanced Dicoding
+        // ? Aturan Suci Coy: Format elemen sesuai persyaratan Advanced Dicoding
         <section key={groupKeyNote} data-testid={`${groupKeyNote}-group`} className="notes-group">
 
-          {/* Header Grup */}
-          <h3>{groupKeyNote}</h3>
-
-          {/* Penghitung Item */}
-          <span data-testid={`${groupKeyNote}-group-count`}>{groupValueNotes.length} catatan</span>
-
-          {/* Render Item Catatan di dalam grup ini */}
+          {/* Dikasih Header biar gacor */}
+          <header className="notes-group__header">
+            <h3 className='notes-group__title'>{groupKeyNote}</h3>
+            {/* Penghitung Item biar ada yang ngitung nya */}
+            <span className='notes-group__count' data-testid={`${groupKeyNote}-group-count`}>{groupValueNotes.length} catatan</span>
+          </header>
+          {/* Render Item Catatan  */}
           {groupValueNotes.map((note) => (
             <NoteItem key={note.id} note={note} onArchive={onArchive} onDelete={onDelete} />
           ))}
-
         </section>
       ))}
     </div>
