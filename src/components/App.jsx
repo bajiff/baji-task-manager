@@ -97,19 +97,28 @@ class App extends React.Component {
       <div className="note-app" data-testid="note-app">
         <div className="note-app__header" data-testid="note-app-header">
           <h1>Notes</h1>
+          {/* Beresin searching */}
+          <div className="note-search" data-testid="note-search">
+            <input placeholder="Cari berdasarkan judul ..." aria-label="Cari catatan berdasarkan judul" data-testid="note-search-input" type="text" value=""></input>
+          </div>
         </div>
         <div className="note-app__body" data-testid="note-app-body">
           <NoteInput addNote={this.onAddNoteHandler} />
           <section
             aria-labelledby="active-notes-title"
-            data-testid="active-notes-section"
-          >
+            data-testid="active-notes-section">
             <h2 id="active-notes-title">Catatan Aktif ({activeNotes.length})</h2>
+            <div className="notes-list notes-list--grouped">
+              <NotesList
+                notes={activeNotes}
+                onDelete={this.onDeleteHandler}
+                onArchive={this.onArchiveHandler}
+                dataTestId="active-notes-list"/>
+            </div>
           </section>
           <section
             aria-labelledby="archived-notes-title"
-            data-testid="archived-notes-section"
-          >
+            data-testid="archived-notes-section">
             <h2 id="archived-notes-title">Arsip ({archivedNotes.length})</h2>
             <NotesList
               notes={archivedNotes}
