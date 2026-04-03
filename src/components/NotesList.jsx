@@ -2,7 +2,7 @@
 import React from 'react';
 import NoteItem from './NoteItem';
 
-function NotesList({ notes, onDelete, onArchive, dataTestId = 'notes-list' }) {
+function NotesList({ searchKeyword, notes, onDelete, onArchive, dataTestId = 'notes-list' }) {
   // TODO [Basic] validasi notes agar tidak kosong.
   const hasNotes = notes && notes.length > 0; // update dengan nilai yang sesuai
 
@@ -56,7 +56,7 @@ function NotesList({ notes, onDelete, onArchive, dataTestId = 'notes-list' }) {
           </header>
           {/* Render Item Catatan  */}
           {groupValueNotes.map((note) => (
-            <NoteItem key={note.id} note={note} onArchive={onArchive} onDelete={onDelete} />
+            <NoteItem key={note.id} note={note} onArchive={onArchive} onDelete={onDelete} searchKeyword={searchKeyword} />
           ))}
         </section>
       ))}

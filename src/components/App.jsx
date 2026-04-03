@@ -99,7 +99,7 @@ class App extends React.Component {
           <h1>Notes</h1>
           {/* Beresin searching */}
           <div className="note-search" data-testid="note-search">
-            <input placeholder="Cari berdasarkan judul ..." aria-label="Cari catatan berdasarkan judul" data-testid="note-search-input" type="text" value=""></input>
+            <input placeholder="Cari berdasarkan judul ..." aria-label="Cari catatan berdasarkan judul" data-testid="note-search-input" type="text" value={searchKeyword} onChange={this.onSearchHandler} autoFocus></input>
           </div>
         </div>
         <div className="note-app__body" data-testid="note-app-body">
@@ -111,6 +111,7 @@ class App extends React.Component {
             <div className="notes-list notes-list--grouped">
               <NotesList
                 notes={activeNotes}
+                searchKeyword={searchKeyword}
                 onDelete={this.onDeleteHandler}
                 onArchive={this.onArchiveHandler}
                 dataTestId="active-notes-list"/>
@@ -122,6 +123,7 @@ class App extends React.Component {
             <h2 id="archived-notes-title">Arsip ({archivedNotes.length})</h2>
             <NotesList
               notes={archivedNotes}
+              searchKeyword={searchKeyword}
               onDelete={this.onDeleteHandler}
               onArchive={this.onArchiveHandler}
               dataTestId="archived-notes-list"

@@ -75,7 +75,6 @@ class NoteInput extends React.Component {
             value={this.state.title}
             onChange={this.onTitleChangeEventHandler}
             required
-            autoFocus
             data-testid="note-input-title-field"
           />
           <textarea
