@@ -41,7 +41,7 @@ function NoteItem({ note, searchKeyword, onDelete, onArchive }) {
         {/* TODO [Basic] tampilkan isi catatan dari note.body */}
         {/* TODO [Advanced] sorot kata kunci pencarian dalam isi menggunakan elemen <mark>. */}
         <p className="note-item__body" data-testid="note-item-body">
-          {showFormattedDate(note.body, searchKeyword)}
+          {highlightText(note.body, searchKeyword)}
         </p>
       </div>
       <div className="note-item__action" data-testid="note-item-action">
